@@ -10,16 +10,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.post("/api/new", function (req, res) {
-    // req.body is equal to the JSON data sent with the post request
-    // This is what the body-parser middleware does for us
-    //   console.log(req.body);
-        reservation.tables.push(req.body);
-        res.json(req.body);
-        console.log(reservation.tables);
-        console.log(reservation.tables.length);
-        return true;
+require("./routing/apiRoutes")(app);
+require("./routing/htmlRoutes")(app);
 
+app.listen(PORT, function () {
+    console.log("App listening on PORT: " + PORT);
 });
 
 module.exports = app;
